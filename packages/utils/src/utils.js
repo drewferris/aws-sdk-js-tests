@@ -3,17 +3,18 @@ import AWS from "aws-sdk";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity";
 import { DynamoDB } from "@aws-sdk/client-dynamodb";
+import { Snowball } from "aws-sdk";
 
 import { REGION, IDENTITY_POOL_ID } from "./config.js";
 
 export const getV2Response = async (clientParams) => {
-  const client = new AWS.DynamoDB(clientParams);
-  return client.listTables().promise();
+  const client = new AWS.Snowball(clientParams);
+  return client.listJobs().promise();
 };
 
 export const getV3Response = async (clientParams) => {
-  const client = new DynamoDB(clientParams);
-  return client.listTables({});
+  const client = new Snowball(clientParams);
+  return client.listJobs();
 };
 
 export const getV2BrowserResponse = async () => {
